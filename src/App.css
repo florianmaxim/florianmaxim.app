@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+
+a {
+  text-decoration: none;
+  color: gold;
+}
+
+.App{
+}
+
+.signature{
+  position: fixed;
+  left:5vh;
+  top:2.5vh;
+  z-index: 1000;
+  color:transparent;
+  font-size: 40pt;
+  font-family: Playfair Display;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+
+.logo{
+  z-index: 2;
+
+  position: fixed;
+
+  width: 10vh;
+  height: 10vh;
+
+  font-family: Lustria;
+  font-size: 100px;
+
+  color: gold;
+  background-color: transparent;
+
+  border: 5px solid red;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  user-select: none;
+  cursor: pointer;
+
+  transition: .125s all;
+}
+
+.info{
+  z-index: 1;
+
+  position: fixed;
+
+  font-family: Lustria;
+  word-wrap: normal;
+
+  color: gold;
+  background-color: transparent;
+
+  user-select: none;
+  border: 0px solid red;
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.loader{
+  width: 10vw;
+  height: 10vw;
+
+  color: gold;
+
+  border: 5px solid gold;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  user-select: none;
+
+  animation-name: spin;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-delay: 0;
+  animation-timing-function: linear;
+
+  z-index: 10;
+  position: fixed;
+  left: 45vw;
+  top: 45vh;
+
+  transition: 1s all;
+}
+
+.item{
+  border: 0px solid red;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.image{
+  transition: .75s all;
+}
+
+@keyframes spin{
+  0% {
+    transform: rotateZ(0deg) scale(1);
+  }
+  50% {
+    transform: rotateZ(180deg) scale(1.25);
+  }
+  100% {
+    transform: rotateZ(360deg) scale(1);
+  }
+}
+
+@media(orientation: landscape){
+  .info{
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15vh;
+
+    width: 75vw;
+    font-size: 10vh;
+
+    text-align: left;
+
+    word-break: break-all;
+  }
+
+  .logo{
+    right: 50px;
+    bottom: 50px;
+  }
+
+  .item{
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .image{
+    max-height: 150vh;
+    width: auto;
+  }
+}
+
+@media(orientation: portrait){
+  .info{
+    left: 50%;
+    transform: translateX(-50%);
+
+    top: 2.5vh;
+    width: 92.5vw;
+    height: 90vh;
+
+    font-size: 10vh;
+    overflow: hidden;
+
+    text-align: justify;
+    word-break: break-all;
+  }
+
+  .logo{
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 5vh;
+  }
+
+  .item{
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .image{
+    max-height: 125vh;
+    width: auto;
+  }
+}
