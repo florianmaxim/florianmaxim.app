@@ -1,5 +1,10 @@
 {
   "items":[
-  ["static/images/screen-msgx-1.jpg", false, "Targold", "https://xgold.cc"]
+    ["static/images/screen-tables-0.jpg", false, "Targold", "https://xgold.cc"],
+    ["static/images/screen-tables-1.jpg", false, "Targold", "https://xgold.cc"],
+    ["static/images/screen-tables-3.jpg", false, "Targold", "https://xgold.cc"],
+
+    ["static/images/screen-msgx-1.jpg", false, "Targold", "https://xgold.cc"],
+    ["static/images/screen-msgx-2.jpg", false, "Targold", "https://xgold.cc"]
   ]
 }

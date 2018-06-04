@@ -23,11 +23,7 @@ let ITEMS = [
 let DEFAULT = {
   signature: 'mf',
   info: [
-    '',
-    'I am a virtual space developer, walking on the blockchain.',
-    'hello@maximflorian.com',
-    '0049 01590 100 50 85',
-    '0x5c5736CC67D0a2F84a0b77DB1fE4A6579BbeE78A',
+    'I make <br/> beautiful apps. hello@maximflorian.com'
   ]
 }
 
@@ -40,6 +36,7 @@ export default class App extends Component {
       _mounted: false,
       _loading: false,
       _allLoaded: false,
+      _info: false,
 
       _signature: false,
 
@@ -194,13 +191,29 @@ export default class App extends Component {
   }
 
   setInfo(){
-    return <div className="info">{DEFAULT.info[this.state.infoPointer]}</div>
+    if(this.state._info)
+    {
+      return (
+      <div className="info">
+        <a href="mailto:hello@florianmaxim.com">
+          I make <br/>
+          beautiful,<br/>
+          secure,<br/>
+          hybrid<br/>
+          apps.<br/>
+        </a>
+      </div>
+    )
+    }else{
+      return <div></div>
+    }
+
   }
 
   handleInfo(event){
     event.preventDefault();
     this.setState({
-      infoPointer: this.state.infoPointer<DEFAULT.info.length-1?this.state.infoPointer+1:0
+        _info: !this.state._info
     })
   }
 

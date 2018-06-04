@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 
-a {
-  text-decoration: none;
-  color: gold;
-}
-
 .App{
 }
 
@@ -42,30 +37,6 @@ a {
   cursor: pointer;
 
   transition: .125s all;
-}
-
-.info{
-  z-index: 1;
-
-  position: fixed;
-
-  font-family: Lustria;
-  word-wrap: normal;
-
-  color: gold;
-  background-color: transparent;
-
-  user-select: none;
-  border: 0px solid red;
-
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
 }
 
 .loader{
@@ -113,6 +84,7 @@ a {
 
 .image{
   transition: .75s all;
+  height: 90vh;
 }
 
 @keyframes spin{
@@ -127,20 +99,32 @@ a {
   }
 }
 
+
 @media(orientation: landscape){
-  .info{
-    left: 50%;
-    transform: translateX(-50%);
-    top: 15vh;
 
-    width: 75vw;
+  .info {
+    position: absolute;
+    left:0;
+    top:0;
+    width: 100vw;
+    height: 120vh;
+    margin-top: -20vh;
+    color: red;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 10vh;
-
-    text-align: left;
-
-    word-break: break-all;
   }
 
+  .info > a:link{
+    color: red;
+    text-decoration: none;
+  }
+
+  .info > a:hover{
+    text-decoration: underline;
+  }
   .logo{
     right: 50px;
     bottom: 50px;
@@ -158,20 +142,32 @@ a {
 }
 
 @media(orientation: portrait){
-  .info{
-    left: 50%;
-    transform: translateX(-50%);
 
-    top: 2.5vh;
-    width: 92.5vw;
-    height: 90vh;
-
+  .info {
+    position: fixed;
+    z-index: 1;
+    left:0;
+    top:0;
+    width: 100vw;
+    height: 130vh;
+    margin-top: -30vh;
+    color: red;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 10vh;
-    overflow: hidden;
-
-    text-align: justify;
-    word-break: break-all;
   }
+
+  .info > a{
+    color: red;
+    text-decoration: none;
+  }
+
+  .info > a:hover{
+    text-decoration: underline;
+  }
+
 
   .logo{
     left: 50%;
