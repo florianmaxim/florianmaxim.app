@@ -2,9 +2,23 @@ import React, { Component } from 'react';
 
 import './App.css';
 
+import * as config from './config.json';
+
 import gold from './Gold.json';
 import items from './Default.json';
 import balls from './Balls.json';
+
+const info = [
+  "I'm Flo and I make beautiful apps.",
+  "My apps are simple and smart. Hybrid and secure.",
+  "I am a full stack frontend and backend developer.",
+  "I'm Flo and I make beautiful apps.",
+  "My apps are simple and smart. Hybrid and secure.",
+  "I am a full stack frontend and backend developer.",
+  "I'm Flo and I make beautiful apps.",
+  "My apps are simple and smart. Hybrid and secure.",
+  "I am a full stack frontend and backend developer.",
+]
 
 let ROUTES = [
   "default",
@@ -13,30 +27,23 @@ let ROUTES = [
   "balls",
 ]
 
-let ITEMS = [
-  items,
-  gold,
-  balls,
-  balls,
-]
-
-let DEFAULT = {
-  signature: 'mf',
-  info: [
-    'I make <br/> beautiful apps. hello@maximflorian.com'
-  ]
-}
-
 export default class App extends Component {
+
   constructor(props){
+
     super(props);
 
     this.state = {
 
+      _started: false,
+
       _mounted: false,
       _loading: false,
       _allLoaded: false,
-      _info: false,
+
+      _info: true,
+
+      _details: true,
 
       _signature: false,
 
@@ -49,19 +56,20 @@ export default class App extends Component {
 
       length: 0,
 
-
-      logo: DEFAULT.logo,
-
       itemPointer: 0,
-
       items: items.items,
-
       item: items.items[0],
 
-      info: DEFAULT.info,
-      infoPointer: 0
+      modes: [
+        "info",
+        "details",
+        "off"
+      ],
+      modePointer: 0
     }
+
   }
+
 
   componentWillMount(){
 
@@ -71,32 +79,35 @@ export default class App extends Component {
 
   componentDidMount(){
 
-    let _index = ROUTES.indexOf(this.props.match.params.id);
-    let _items = _index!==-1?ITEMS[_index].items:items.items;
-
-    this.setState({
-      items: _items,
-      //Once in a lifetime set the initial window height
-      length: !this.state._mounted?window.innerHeight:this.state.length,
-      _mounted: true
-    })
-
     window.addEventListener('scroll', (event) => {
+
       this.updateViewport();
 
       let _itemPointer  = (this.state.viewport.top/this.state.viewport.height).toFixed(0);
+
+          _itemPointer = _itemPointer>0&&_itemPointer<=this.state.items.length?_itemPointer:0;
+
+          _itemPointer = _itemPointer<this.state.items.length?_itemPointer:this.state.items.length-1;
+
+
       let _item     = this.state.items[_itemPointer];
 
       this.setState({
+
+        _started: this.state.viewport.top>10?true:false,
+
         itemPointer: _itemPointer,
         item: _item,
-      });
+
+      }, () => {});
 
     })
+
     window.addEventListener('resize', (event) => {
       this.updateViewport();
     })
   }
+
 
   updateViewport() {
 
@@ -134,8 +145,69 @@ export default class App extends Component {
     })
   }
 
+  handleMode(event){
+
+    event.preventDefault();
+
+    this.setState({
+
+      modePointer:this.state.modePointer<this.state.modes.length-1?this.state.modePointer+1:0
+
+    }, () => {
+
+      switch(this.state.modes[this.state.modePointer]){
+
+        case "off":
+
+          this.setState({
+            _details: false
+          })
+
+        break;
+        case "details":
+
+          this.setState({
+            _details: true,
+            _info: false
+          })
+
+        break;
+        case "info":
+
+          this.setState({
+            _details: true,
+            _info: true
+          })
+
+        break;
+      }
+
+    })
+  }
+
+
   setItems(){
     return(
+
+      <div>
+
+      <div className="item" style={{
+        fontFamily: 'Song Myung',
+        fontSize: '35pt',
+        color: 'red',
+        height: '0vh',
+        marginTop: '-2.5vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+      }}>
+
+
+
+      </div>
+
+      {
       this.state.items.map((item, index) => {
 
         const inView   = this.state.viewport.top>=(index*this.state.viewport.height)-this.state.viewport.height*.75;
@@ -178,52 +250,124 @@ export default class App extends Component {
               )
           }
         }
-      })
-    );
+      }) }
+
+        <div className="item" style={{
+          fontFamily: 'Song Myung',
+          fontSize: '15pt',
+          color: 'red',
+          height: '50vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          textAlign: 'center',
+          flexDirection: 'column'
+        }}>
+
+        Impress<br/>
+        <br/>
+        Florian Maxim<br/>
+        Sonnenallee 102<br/>
+        12045 Berlin<br/>
+        <br/>
+        hello@florianmaxim.com
+        </div>
+      </div>);
   }
 
   setLogo(){
-    return <div className="logo" style={{opacity: this.state._loading?'0':'1'}} onClick={(event)=>{this.handleInfo(event)}}>{}</div>
-  }
-
-  setSig(){
-    return <div className="signature" style={{opacity: this.state._signature?'1':'0'}}>{DEFAULT.signature}</div>
+    return <div className="logo" style={{
+      background: this.state._info?'transparent':'red',
+    }} onClick={(event)=>{this.handleMode(event)}}>{}</div>
   }
 
   setInfo(){
-    if(this.state._info)
-    {
       return (
-      <div className="info">
-        <a href="mailto:hello@florianmaxim.com">
-          I make <br/>
-          beautiful,<br/>
-          secure,<br/>
-          hybrid<br/>
-          apps.<br/>
-        </a>
+        <div>
+          {
+            info[this.state.itemPointer]
+          }
+        </div>
+      )
+  }
+
+  setDetails(){
+    return(
+
+      <div>
+
+        <div style={{
+          position: 'fixed',
+          right: '25px',
+          top: '25px',
+          zIndex: '99',
+          display: config.debug?'flex':'none'
+        }}>
+          {this.state.modes[this.state.modePointer]}({this.state.modePointer})
+        </div>
+
+        <img
+          onClick={() => {
+
+          }}
+          src={this!==undefined&&this.state!==undefined&&this.state.item!==undefined?this.state.item[2]:''}
+          style={{
+            zIndex: '10',
+            position: 'fixed',
+            top: '0px',
+            left: '0vw',
+            transform: 'translate3d(25%,0,0)',
+            width: '50px',
+            height: '50px',
+            marginTop: '12.5px',
+            border: '0px solid black',
+            cursor: 'pointer',
+            transition: '.125s all'
+          }}/>
+        <div
+        onClick={() => {
+        }}
+        className="details"
+        style={{
+          position: 'fixed',
+          left: '0',
+          height: this.state._details?'100vh':'75px',
+          border: '0px solid blue'
+        }}>
+          <div
+          style={{
+            display: 'flex',
+            opacity: this.state._details?'1':'0',
+            transition: '.5s all',
+            marginTop: '-10vh',
+            height: '100vh',
+            width: '75vw',
+            marginLeft: '0',
+            flexDirection: 'column',
+            alignItem: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            fontSize: '25pt',
+            fontFamily: 'Song Myung'
+          }}>
+            {this.state._info?this.setInfo():this.state.item[3]}
+          </div>
+        </div>
+
       </div>
+
     )
-    }else{
-      return <div></div>
-    }
-
   }
 
-  handleInfo(event){
-    event.preventDefault();
-    this.setState({
-        _info: !this.state._info
-    })
-  }
 
   render() {
     return (
       <div className="App" style={{height: this.state.length+'px'}}>
-        {this.setSig()}
-        {this.setLogo()}
+
+        {this.setDetails()}
         {this.setItems()}
-        {this.setInfo()}
+        {this.setLogo()}
+
       </div>
     );
   }

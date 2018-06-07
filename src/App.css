@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Song+Myung');
+
+a{
+  text-decoration: none;
+}
 
 .App{
 }
@@ -15,12 +21,12 @@
 }
 
 .logo{
-  z-index: 2;
+  z-index: 3;
 
   position: fixed;
 
-  width: 10vh;
-  height: 10vh;
+  width: 50px;
+  height: 50px;
 
   font-family: Lustria;
   font-size: 100px;
@@ -40,12 +46,18 @@
 }
 
 .loader{
+  z-index: 10000;
+
+  position: fixed;
+  left: 45vw;
+  top: 45vh;
+
   width: 10vw;
   height: 10vw;
 
-  color: gold;
+  color: red;
 
-  border: 5px solid gold;
+  border: 5px solid red;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -57,11 +69,6 @@
   animation-duration: 2s;
   animation-delay: 0;
   animation-timing-function: linear;
-
-  z-index: 10;
-  position: fixed;
-  left: 45vw;
-  top: 45vh;
 
   transition: 1s all;
 }
@@ -84,7 +91,7 @@
 
 .image{
   transition: .75s all;
-  height: 90vh;
+  height: 85vh;
 }
 
 @keyframes spin{
@@ -99,6 +106,37 @@
   }
 }
 
+.details{
+  z-index: 1;
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+
+  transition: .25s all;
+
+  color: red;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 1px solid red;
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.75);
+
+  font-family: Roboto;
+  font-size: 2.5vh;
+
+  cursor: pointer;
+}
 
 @media(orientation: landscape){
 
@@ -145,18 +183,19 @@
 
   .info {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     left:0;
     top:0;
     width: 100vw;
-    height: 130vh;
-    margin-top: -30vh;
+    height: 100vh;
+    padding-top: 5vh;
     color: red;
     background: white;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    font-size: 10vh;
+    font-size: 7.5vh;
+    font-family: Roboto;
   }
 
   .info > a{
@@ -167,7 +206,6 @@
   .info > a:hover{
     text-decoration: underline;
   }
-
 
   .logo{
     left: 50%;
