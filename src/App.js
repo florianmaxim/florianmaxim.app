@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import * as Scroll from 'react-scroll';
+import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+
 import './App.css';
 
 import * as config from './config.json';
@@ -10,7 +13,7 @@ import balls from './Balls.json';
 
 const info = [
   "I'm Flo and I make beautiful apps.",
-  "My apps are simple and smart. Hybrid and secure.",
+  "My apps are simple and smart. Cross-platform and secure.",
   "I am a full stack frontend and backend developer.",
   "I'm Flo and I make beautiful apps.",
   "My apps are simple and smart. Hybrid and secure.",
@@ -18,13 +21,6 @@ const info = [
   "I'm Flo and I make beautiful apps.",
   "My apps are simple and smart. Hybrid and secure.",
   "I am a full stack frontend and backend developer.",
-]
-
-let ROUTES = [
-  "default",
-  "gold",
-  "ball",
-  "balls",
 ]
 
 export default class App extends Component {
@@ -191,21 +187,7 @@ export default class App extends Component {
 
       <div>
 
-      <div className="item" style={{
-        fontFamily: 'Song Myung',
-        fontSize: '35pt',
-        color: 'red',
-        height: '0vh',
-        marginTop: '-2.5vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-      }}>
-
-
-
-      </div>
+      <div></div>
 
       {
       this.state.items.map((item, index) => {
@@ -276,9 +258,57 @@ export default class App extends Component {
   }
 
   setLogo(){
-    return <div className="logo" style={{
-      background: this.state._info?'transparent':'red',
-    }} onClick={(event)=>{this.handleMode(event)}}>{}</div>
+
+    return <div>
+    <div
+    style={{
+      display: config.arrows?'flex':'none',
+      position: 'fixed',
+      bottom: '5vh',
+      right: '5vw',
+      zIndex: '999',
+      width: '50px',
+      height: '50px',
+      border: '5px solid yellow',
+      borderLeftWidth: '0px',
+      borderTopWidth: '0px',
+      cursor: 'pointer',
+      borderColor: this.state._details?'yellow':'#e5e5e5',
+      //borderRadius: this.state.modePointer===0?'100%':'0'
+    }}
+    onClick={(event)=>{
+      scroll.scrollMore(this.state.viewport.height/2);
+    }} />
+    <div className="logo"
+    style={{
+      background: this.state._info?'transparent':'transparent',
+      borderColor: this.state._details?'red':'#e5e5e5',
+      borderRadius: this.state._info?'100%':'0',
+    }}
+    onClick={(event)=>{this.handleMode(event)}}>{}</div>
+    <div
+    style={{
+      display: config.arrows?'flex':'none',
+      position: 'fixed',
+      bottom: '5vh',
+      left: '5vh',
+      zIndex: '999',
+      width: '50px',
+      height: '50px',
+      borderColor: 'blue',
+      borderStyle: 'solid',
+      borderLeftWidth: '5px',
+      borderTopWidth: '5px',
+      borderRightWidth: '0px',
+      borderBottomWidth: '0px',
+      borderColor: this.state._details?'blue':'#e5e5e5',
+      cursor: 'pointer'
+      //borderRadius: this.state.modePointer===0?'100%':'0'
+    }}
+    onClick={(event)=>{
+      scroll.scrollToTop();
+    }} />
+    </div>
   }
 
   setInfo(){
@@ -291,10 +321,30 @@ export default class App extends Component {
       )
   }
 
+
   setDetails(){
     return(
 
       <div>
+
+      <div style={{
+        position: 'fixed',
+        left: '21px',
+        top: '66px',
+        fontFamily: 'Roboto',
+        fontSize: '12px',
+        color: 'black',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        zIndex: '2',
+        display: config.icon?'flex':'none'
+      }}>
+
+        {this.state.item[1]}
+
+      </div>
 
         <div style={{
           position: 'fixed',
@@ -306,12 +356,28 @@ export default class App extends Component {
           {this.state.modes[this.state.modePointer]}({this.state.modePointer})
         </div>
 
-        <img
-          onClick={() => {
+        <div
+          onClick={() => {}}
+          style={{
+            zIndex: '9999',
+            position: 'fixed',
+            top: '0px',
+            left: '0vw',
+            width: '75px',
+            height: '80px',
+            background: 'rgba(255,255,255,.85)',
+            border: '0px solid black',
+            cursor: 'pointer',
+            transition: '.125s all',
+            opacity: this.state.modes[this.state.modePointer]!=="info"?'0':'1'
+          }}/>
 
-          }}
+        <a href={this.state.item[5]}>
+        <img
+          onClick={() => {}}
           src={this!==undefined&&this.state!==undefined&&this.state.item!==undefined?this.state.item[2]:''}
           style={{
+            display: config.icon?'flex':'none',
             zIndex: '10',
             position: 'fixed',
             top: '0px',
@@ -324,31 +390,22 @@ export default class App extends Component {
             cursor: 'pointer',
             transition: '.125s all'
           }}/>
+        </a>
         <div
-        onClick={() => {
-        }}
-        className="details"
-        style={{
-          position: 'fixed',
-          left: '0',
-          height: this.state._details?'100vh':'75px',
-          border: '0px solid blue'
-        }}>
-          <div
+          onClick={() => {}}
+          className="details"
           style={{
-            display: 'flex',
+            position: 'fixed',
+            left: '0',
+            height: this.state._details?'100vh':'10px',
+            borderBottom: '0px solid blue'
+          }}
+        >
+          <div
+          className="details-text"
+          style={{
             opacity: this.state._details?'1':'0',
-            transition: '.5s all',
-            marginTop: '-10vh',
-            height: '100vh',
-            width: '75vw',
-            marginLeft: '0',
-            flexDirection: 'column',
-            alignItem: 'center',
-            justifyContent: 'center',
-            textAlign: 'center',
-            fontSize: '25pt',
-            fontFamily: 'Song Myung'
+            color: "red"
           }}>
             {this.state._info?this.setInfo():this.state.item[3]}
           </div>
