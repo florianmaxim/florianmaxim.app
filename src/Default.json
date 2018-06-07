@@ -3,7 +3,15 @@
     ["static/images/screen-tables-0.jpg", "Tables", "static/images/icon-tables.png", "Tables was developed in and for the table tennis capital of the world, Berlin."],
     ["static/images/screen-tables-1.jpg", "Tables", "static/images/icon-tables.png", "It allowes it's citizens and vistors to easeily find and host public ping pong matches."],
     ["static/images/screen-tables-3.jpg", "Tables", "static/images/icon-tables.png", "This is a new use of public place."],
-    ["static/images/screen-msgx-1.jpg", "MsgX", "static/images/icon-tables.png", "MsgX is a decentraliced App that allowes you to send a message to the internet."],
-    ["static/images/screen-msgx-2.jpg", "MsgX", "static/images/icon-tables.png", "It allowes it's citizens and vistors to easeily find and host public ping pong matches."]
+
+    ["static/images/screen-msgx-0.jpg", "MsgX", "static/images/icon-msgx.png", "MsgX is a decentraliced App that allowes you to send a message to the internet."],
+    ["static/images/screen-msgx-1.jpg", "MsgX", "static/images/icon-msgx.png", "MsgX is a decentraliced App that allowes you to send a message to the internet."],
+    ["static/images/screen-msgx-2.jpg", "MsgX", "static/images/icon-msgx.png", "It allowes it's citizens and vistors to easeily find and host public ping pong matches."],
+    ["static/images/screen-msgx-3.jpg", "MsgX", "static/images/icon-msgx.png", "It allowes it's citizens and vistors to easeily find and host public ping pong matches."],
+
+    ["static/images/screen-xgold-1.png", "XGold", "static/images/icon-tables.png", "It allowes it's citizens and vistors to easeily find and host public ping pong matches."],
+    ["static/images/screen-xgold-2.png", "XGold", "static/images/icon-tables.png", "It allowes it's citizens and vistors to easeily find and host public ping pong matches."],
+    ["static/images/screen-xgold-3.png", "XGold", "static/images/icon-tables.png", "It allowes it's citizens and vistors to easeily find and host public ping pong matches."]
+
   ]
 }
