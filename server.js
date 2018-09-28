@@ -4,7 +4,7 @@ var path = require('path');
 
 var app = express();
 
-var _PORT = 5500;
+var _PORT = 5000;
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, 'build')));
